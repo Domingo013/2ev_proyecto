@@ -4,10 +4,12 @@
 **/
 import {Modelo} from './modelo.js'
 
+import {Vista} from './vista.js'
 import {VistaNav} from './vistanav.js'
-import {VistaInicio} from './vistainicio.js'
-import {VistaCRUD} from './vistacrud.js'
-import {vistaMostrar} from './vistamostrar.js'
+import {VistaListar} from './vistalistar.js'
+import {VistaAnadir} from './vistaanadir.js'
+import {VistaModificar} from './vistamodificar.js'
+
 /**
  * Controlador de la aplicación
 **/
@@ -17,6 +19,7 @@ class Controlador{
 		Llama al método iniciar al cargarse la página
 	**/
 	constructor(){
+		this.modelo = new Modelo(this)
 		window.onload = this.iniciar.bind(this)
 	}
 	/**
@@ -26,44 +29,52 @@ class Controlador{
 	iniciar(){
 		this.modelo = new Modelo()
 
-		this.nav = document.getElementsByTagName('nav')[0]
-		this.divInicio = document.getElementById('divInicio')
-		this.divCRUD = document.getElementById('divCRUD')
-		this.divMostrar = document.getElementById('divMostrar')
+		this.header = document.getElementsByTagName('header')[0]
+		this.divListar = document.getElementById('divListar')
+		this.divAnadir= document.getElementById('divAnadir')
+		this.divModificar = document.getElementById('divModificar')
 
-		this.vistaNav = new VistaNav(this, this.nav)
-		this.vistaInicio = new VistaInicio(this.divInicio)
-		this.vistaCRUD = new VistaCRUD(this.divCRUD, this)
-		this.vistaMostrar = new vistaMostrar(this.divMostrar, this)
+		this.vistaNav = new VistaNav(this, this.header)
+		this.vistaListar = new VistaListar(this.divListar, this)
+		this.vistaAnadir = new VistaAnadir(this.divAnadir, this)
+		this.vistaModificar = new VistaModificar(this.divModificar, this)
+
+		this.vista = new Vista(this, document.getElementById('divAnadir'))
+	}
+	insertar(objeto){
+		this.modelo.insertar(objeto, this.insertarOK.bind(this))
+	}
+	insertarOK(){
+		console.log('La inserción ha ido bien')
 	}
 	/**
 		Oculta todas las vistas.
 	**/
 	ocultarVistas(){
-	    this.vistaInicio.mostrar(false)
-	    this.vistaCRUD.mostrar(false)
-	    this.vistaMostrar.mostrar(false)
+	    this.vistaListar.mostrar(false)
+	    this.vistaAnadir.mostrar(false)
+	    this.vistaModificar.mostrar(false)
 	}
 	/**
-		Atención a la pulsación del enlace al Inicio en el menú de navegación.
+		Atención a la pulsación del lisar.
 	**/
-	pulsarNavInicio(){
+	pulsarNavListar(){
 		this.ocultarVistas()
-		this.vistaInicio.mostrar(true)
+		this.vistaListar.mostrar(true)
 	}
 	/**
-		Atención a la pulsación del enlace al CRUD en el menú de navegación.
+		Atención a la pulsación del añadir.
 	**/
-	pulsarNavCRUD(){
+	pulsarNavAnadir(){
 		this.ocultarVistas()
-		this.vistaCRUD.mostrar(true)
+		this.vistaAnadir.mostrar(true)
 	}
 	/**
-		Atención a la pulsación del enlace al Juego en el menú de navegación.
+		Atención a la pulsación del enlace al modificar
 	**/
-	pulsarNavJuego(){
+	pulsarNavModificar(){
 		this.ocultarVistas()
-		this.vistaMostrar.mostrar(true)
+		this.vistaModificar.mostrar(true)
 	}
 	/**
 	 * Devuelve el modelo de la aplicación

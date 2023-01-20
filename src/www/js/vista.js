@@ -11,8 +11,9 @@ export class Vista{
 	/**
 		Constructor de la clase
 	**/
-	constructor(div){
+	constructor(div, controlador){
 		this.div = div
+		this.controlador = controlador
 	}
 	/**
 		Muestra u oculta el div principal de la vista.

@@ -6,6 +6,14 @@ body{
 	background-color: rgb(219, 233, 233);
 }
 
+#divAnadir{
+	display: none;
+}
+
+#divModificar{
+	display: none;
+}
+
 #logo{
 	width: 70px;
 	height: auto;
@@ -36,7 +44,8 @@ header{
 
 header li{
 	cursor: pointer;
-	display: inline;
+	display: inline-block;
+	margin: 0 10px;
 }
 
 footer{
@@ -45,7 +54,9 @@ footer{
 	box-shadow: 0 1px 5px rgba(20, 20, 20, 0.3);
 	height: 100px;
 	margin-top: 15px;
-	text-align: right;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 #divCRUD{

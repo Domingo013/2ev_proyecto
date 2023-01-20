@@ -10,35 +10,37 @@ export class VistaNav{
 	/**
 		Constructor de la clase.
 		@param controlador {Controlador} Controlador de la vista.
-		@param nav {HtmlNavElement} Nav de HTML en el que se desplegará la vista.
+		@param header {HtmlheaderElement} header de HTML en el que se desplegará la vista.
 	**/
-	constructor(controlador, nav){
+	constructor(controlador, header){
 		this.controlador = controlador
-		this.nav = nav
-		this.liInicio = this.nav.getElementsByTagName('li')[0]
-		this.liCRUD = this.nav.getElementsByTagName('li')[1]
-		this.liJuego = this.nav.getElementsByTagName('li')[2]
+		this.header = header
+		this.liListar = this.header.getElementsByTagName('li')[1]
+		this.liAnadir = this.header.getElementsByTagName('li')[2]
+		this.liModificar = this.header.getElementsByTagName('li')[3]
+		this.spanAnadir = document.getElementById('anadir2')
 
-		this.liInicio.onclick = this.pulsarInicio.bind(this)
-		this.liCRUD.onclick = this.pulsarCRUD.bind(this)
-		this.liJuego.onclick = this.pulsarJuego.bind(this)
+		this.liListar.onclick = this.pulsarListar.bind(this)
+		this.liAnadir.onclick = this.pulsarAnadir.bind(this)
+		this.liModificar.onclick = this.pulsarModificar.bind(this)
+		this.spanAnadir.onclick = this.pulsarAnadir.bind(this)
 	}
 	/**
-		Atención a la pulsación sobre el enlace de Inicio
+		Atención a la pulsación sobre el listar
 	**/
-	pulsarInicio(){
-		this.controlador.pulsarNavInicio()
+	pulsarListar(){
+		this.controlador.pulsarNavListar()
 	}
 	/**
-		Atención a la pulsación sobre el enlace de CRUD
+		Atención a la pulsación sobre el añadir
 	**/
-	pulsarCRUD(){
-		this.controlador.pulsarNavCRUD()
+	pulsarAnadir(){
+		this.controlador.pulsarNavAnadir()
 	}
 	/**
-		Atención a la pulsación sobre el enlace de Juego
+		Atención a la pulsación sobre la modificación
 	**/
-	pulsarJuego(){
-		this.controlador.pulsarNavJuego()
+	pulsarModificar(){
+		this.controlador.pulsarNavModificar()
 	}
 }

@@ -1,15 +1,11 @@
 /**
-	@file Contiene la vista del crud de la aplicación
+	@file Contiene la vista de modificar de la aplicación
 	@autor Domingo Miño Redondo
 **/
 
 import {Vista} from './vista.js'
 
-/**
-	Vista del CRUD
-	Contiene el formulario de inserción y la tabla de listado.
-**/
-export class VistaCRUD extends Vista{
+export class VistaModificar extends Vista{
 	/**
 		Constructor de la clase
 		@param div {HTMLDivElement} Div principal de la vista.
@@ -18,6 +14,8 @@ export class VistaCRUD extends Vista{
 	constructor(div, controlador){
 		super(div)
 		this.controlador = controlador
-
+		this.btnModificar = document.getElementById('btnModificar')
+		// this.btnModificar.onclick = this.pulsarModificar.bind(this)
 	}
+	
 }
