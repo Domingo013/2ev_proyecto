@@ -38,9 +38,6 @@ export class VistaListar extends Vista{
 				let motos = solicitud.result
 				for (let moto of motos){
 					this.crearTarjetas(moto)
-					let p = document.createElement('p')
-					p.textContent = moto.imagen
-					this.divMotos.appendChild(p)
 				}
 			}).bind(this)
 		}

@@ -18,10 +18,11 @@ export class VistaAnadir extends Vista{
 		super(div)
 		this.controlador = controlador
 
-		this.imagenMoto = document.getElementById('imagen')
+		this.imagenMoto = document.getElementsByClassName('imagen')[0]
+		console.log(this.imagenMoto)
 		this.valorImagen = null
 		this.imagenMoto.addEventListener('change', e => {
-			const archivo = this.imagen.files[0]
+			const archivo = this.imagenMoto.files[0]
 			const lector = new FileReader()
 			lector.addEventListener('load',() => {
 				this.valorImagen = lector.result
@@ -64,8 +65,8 @@ export class VistaAnadir extends Vista{
 		let precio = this.precio.value
 		this.descripcion = document.getElementById('descripcion')
 		let descripcion = this.descripcion.value
-		this.imagen = document.getElementById('imagen')
-		let imagen = this.imagen.files[0]
+		//this.imagen = document.getElementById('imagen')
+		//let imagen = this.imagen.files[0]
 		//let imagen = this.imagen.value
 		if(tipos[0] == true){
 			tipos[0] = 'Sport'
@@ -98,7 +99,7 @@ export class VistaAnadir extends Vista{
 		//Leer y validar los datos del formulario
 		// let nombre = 'Ktm'
 		//Construyo el objetos
-		let objeto = new Moto(marca, tipos, extras, anio, km, precio, descripcion, imagen)
+		let objeto = new Moto(marca, tipos, extras, anio, km, precio, descripcion, this.valorImagen)
 		this.controlador.insertar(objeto)
 		// console.log(objeto)
 
