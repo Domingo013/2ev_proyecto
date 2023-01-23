@@ -17,6 +17,18 @@ export class VistaAnadir extends Vista{
 	constructor(div, controlador){
 		super(div)
 		this.controlador = controlador
+
+		this.imagenMoto = document.getElementById('imagen')
+		this.valorImagen = null
+		this.imagenMoto.addEventListener('change', e => {
+			const archivo = this.imagen.files[0]
+			const lector = new FileReader()
+			lector.addEventListener('load',() => {
+				this.valorImagen = lector.result
+			})
+			lector.readAsDataURL(archivo)
+		})
+
 		this.btnAceptar = document.getElementById('btnAceptar')
 		this.btnAceptar.onclick = this.pulsarAceptar.bind(this)
 	}
